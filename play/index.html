@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gull Bomber</title>
+<meta name="description" content="Be the seagull. Dodge kites and eagles, eat chips, and splat the town below. Free on Android and iPhone.">
+<meta property="og:title" content="Gull Bomber">
+<meta property="og:description" content="Be the seagull. Dodge kites and eagles, eat chips, and splat the town below. Free on Android and iPhone.">
+<meta property="og:image" content="https://moniuet.github.io/gull-bomber/play/og.png">
+<meta property="og:url" content="https://moniuet.github.io/gull-bomber/play/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1F2430; --muted:#4A5466; --orange:#FF9F1C; --sky1:#5BC2EA; --sky2:#D6F1F8;
+    --panel:#FFFDF7; --green:#34A853; --green-d:#1E6E2D; --line:#1F2430;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; }
+  body{
+    font-family:'Nunito', system-ui, sans-serif; color:var(--ink);
+    background:linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 520px, #FFFFFF 1100px);
+    min-height:100vh;
+  }
+  a{ color:inherit; }
+  .wrap{ max-width:980px; margin:0 auto; padding:0 16px; }
+
+  header{ text-align:center; padding:36px 0 8px; }
+  .logo{ font-family:'Baloo 2', sans-serif; font-weight:800; font-size:clamp(44px, 10vw, 84px); line-height:1; margin:0;
+    color:#fff; -webkit-text-stroke:0.11em var(--ink); paint-order:stroke fill; text-shadow:0 0.07em 0 var(--ink); letter-spacing:.01em; }
+  .logo span{ color:var(--orange); }
+  .tag{ font-family:'Baloo 2', sans-serif; font-weight:700; font-size:clamp(20px, 4.4vw, 28px); margin:14px 0 0; }
+  .sub{ font-size:17px; color:var(--muted); margin:6px auto 0; max-width:34ch; font-weight:700; }
+
+  .stores{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:26px 0 8px; }
+  .store{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; min-width:220px; justify-content:center;
+    background:var(--ink); color:#fff; border-radius:16px; padding:12px 22px; box-shadow:0 5px 0 rgba(31,36,48,.35);
+    font-weight:800; font-size:17px; line-height:1.15; text-align:left; }
+  .store small{ display:block; font-weight:700; font-size:12px; opacity:.8; letter-spacing:.02em; }
+  .store svg{ width:28px; height:28px; flex:0 0 28px; }
+  .store:active{ transform:translateY(2px); box-shadow:0 3px 0 rgba(31,36,48,.35); }
+  .store.soon{ background:#5A6273; pointer-events:none; }
+  .web{ text-align:center; font-weight:700; color:var(--muted); font-size:15px; margin:6px 0 0; }
+  .web a{ color:var(--ink); }
+
+  .hero{ margin:26px 0 0; border:4px solid var(--line); border-radius:22px; overflow:hidden; box-shadow:0 8px 0 rgba(31,36,48,.25); background:#BDE7F4; }
+  .hero img{ display:block; width:100%; height:auto; }
+
+  section{ margin:44px 0 0; }
+  h2{ font-family:'Baloo 2', sans-serif; font-weight:800; font-size:30px; margin:0 0 14px; text-align:center; }
+  .how{ display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:14px; }
+  .card{ background:var(--panel); border:3px solid var(--line); border-radius:18px; padding:16px 18px; box-shadow:0 4px 0 rgba(31,36,48,.2); }
+  .card b{ display:block; font-family:'Baloo 2', sans-serif; font-size:20px; margin-bottom:4px; }
+  .card p{ margin:0; color:var(--muted); font-weight:700; line-height:1.45; }
+
+  .shots{ display:flex; gap:14px; overflow-x:auto; padding:4px 2px 14px; scroll-snap-type:x mandatory; justify-content:flex-start; }
+  .shots img{ width:220px; flex:0 0 220px; height:auto; border-radius:18px; border:3px solid var(--line); scroll-snap-align:center; background:#BDE7F4; }
+  @media (min-width:960px){ .shots{ justify-content:center; } }
+
+  .cta{ text-align:center; background:var(--panel); border:3px solid var(--line); border-radius:22px; padding:26px 16px 22px; box-shadow:0 6px 0 rgba(31,36,48,.2); }
+  .cta p{ margin:0; font-weight:700; color:var(--muted); }
+
+  footer{ text-align:center; color:var(--muted); font-size:14px; font-weight:700; padding:40px 0 34px; }
+  footer a{ color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 class="logo">GULL <span>BOMBER</span></h1>
+    <p class="tag">Be the seagull. Splat the town.</p>
+    <p class="sub">Dodge kites and eagles, eat chips, and drop poo on the people below.</p>
+    <div class="stores" id="stores">
+      <a class="store" id="playBtn" href="https://play.google.com/store/apps/details?id=com.gullbomber.game" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M4 2.6v18.8c0 .5.5.8.9.6L21 12.8c.5-.3.5-1 0-1.3L4.9 2c-.4-.2-.9.1-.9.6z"/></svg>
+        <span><small>GET IT ON</small>Google Play</span>
+      </a>
+      <a class="store" id="iosBtn" href="https://apps.apple.com/app/id6826388426" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 6.9 1.2 9.1.8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.5zM14.1 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/></svg>
+        <span><small id="iosSmall">DOWNLOAD ON THE</small><span id="iosLabel">App Store</span></span>
+      </a>
+    </div>
+    <p class="web" id="webLine" hidden>Or <a id="webLink" href="#">play it in your browser</a></p>
+  </header>
+
+  <div class="hero"><img src="hero.jpg" width="1600" height="686" alt="The seagull flying over a seaside town, with a poo falling towards the people below"></div>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="how">
+      <div class="card"><b>Tap to flap</b><p>Keep the gull in the air and dodge kites, eagles and other birds.</p></div>
+      <div class="card"><b>Eat the chips</b><p>Fly through snacks to fill your poo meter.</p></div>
+      <div class="card"><b>Splat the town</b><p>When it glows, drop it on the people below. Small targets score the most.</p></div>
+      <div class="card"><b>Come back daily</b><p>A new Daily Challenge every day, missions, and new gulls to unlock.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Have a look</h2>
+    <div class="shots">
+      <img src="shot1.jpg" width="440" height="956" loading="lazy" alt="Dropping poo on the people below">
+      <img src="shot2.jpg" width="440" height="956" loading="lazy" alt="Grabbing snacks to fill the poo meter">
+      <img src="shot4.jpg" width="440" height="956" loading="lazy" alt="Dodging kites and eagles over the harbour">
+      <img src="shot5.jpg" width="440" height="956" loading="lazy" alt="The Daily Challenge in the seaside town">
+    </div>
+  </section>
+
+  <section>
+    <div class="cta">
+      <h2 style="margin-bottom:6px">Free to play</h2>
+      <p>Short runs, one thumb, and always one more go.</p>
+      <div class="stores" id="stores2"></div>
+    </div>
+  </section>
+
+  <footer>
+    Made by Landsweeper Games<br>
+    <a href="../">Privacy policy</a> &middot; <a href="mailto:jamsweeper93@googlemail.com">Contact</a>
+  </footer>
+</div>
+<script>
+  // Settings: switch these on as each one goes live.
+  var IOS_LIVE = false;   // true once Gull Bomber is approved on the App Store
+  var WEB_URL  = '';      // e.g. the CrazyGames or itch.io page, once it's up
+
+  (function(){
+    var ios = document.getElementById('iosBtn');
+    if(!IOS_LIVE){
+      ios.classList.add('soon'); ios.removeAttribute('href');
+      document.getElementById('iosSmall').textContent = 'COMING SOON TO THE';
+    }
+    if(WEB_URL){
+      document.getElementById('webLink').href = WEB_URL;
+      document.getElementById('webLine').hidden = false;
+    }
+    // same store buttons again at the bottom
+    var a = document.getElementById('stores'), b = document.getElementById('stores2');
+    b.innerHTML = a.innerHTML.replace(/id="[^"]*"/g, '');
+  })();
+</script>
+</body>
+</html>
